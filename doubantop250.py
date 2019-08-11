@@ -70,11 +70,13 @@ def main():
     with codecs.open('doubantop250.txt','w',encoding='utf-8') as fp:
         fp.write(' '*35 + '豆瓣250部评分最高的电影\n')
         fp.write(' '*31 + 'Yourname\n')
+        i = 0
         while url:
             html_data   = download_page(url)
             movies, url = parse_html(html_data)
-            for i,info in enumerate(movies):
-                fp.write(str(i+1)+'\n')
+            for info in movies:
+                i += 1
+                fp.write(str(i)+'\n')
                 fp.write('　　影名：'+info['Title']+'\n')
                 fp.write('　　导演：'+info['Direc']+'\n')
                 fp.write('　　评分：'+info['Score']+'\n')
